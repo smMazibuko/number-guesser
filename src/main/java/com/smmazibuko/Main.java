@@ -22,28 +22,30 @@ public class Main {
 
             userAnswer = getUserAnswer(myScanner);
             compareAnswer(userAnswer, finalAnswer);
-
         }
 
         myScanner.close();
-
     }
 
     static int getUserAnswer(Scanner scanner){
 
-        int userAnswer = scanner.nextInt();
-        scanner.nextLine();
+        try {
+            int userAnswer = scanner.nextInt();
+            scanner.nextLine();
+            return userAnswer;
+        }
+        catch (Exception e) {
+            // user input will be validated here
+            return -1;
+        }
 
-        // user input will be validated here
-
-        return userAnswer;
     }
 
     static void compareAnswer(int guess, int answer){
 
         if (guess < answer) System.out.println("Guess higher");
         if (guess > answer) System.out.println("Guess lower");
-        if (guess == answer) System.out.println("Correct! The answer was " + answer);
+        if (guess == answer) System.out.println("Correct! The answer was " + answer + ".");
 
     }
 
