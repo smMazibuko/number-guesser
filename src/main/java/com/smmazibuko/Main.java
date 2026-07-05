@@ -10,11 +10,13 @@ public class Main {
         System.out.println("Welcome to smMazibuko's Number Guesser!");
 
         Random randomGenerator = new Random();
-        int finalAnswer = randomGenerator.nextInt(0, 31);
         Scanner myScanner = new Scanner(System.in);
-        int userAnswer = -1;
 
-        System.out.println("Please guess a number between 0 and 30:");
+        int upperLimit = 20;
+        int finalAnswer = randomGenerator.nextInt(0, upperLimit + 1);
+        int userAnswer = -1; // sentinel value
+
+        System.out.println("Please guess a number between 0 and " + upperLimit + ":");
 
         while (userAnswer != finalAnswer){
 
