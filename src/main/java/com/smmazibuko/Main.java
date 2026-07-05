@@ -10,19 +10,23 @@ public class Main {
         System.out.println("Welcome to smMazibuko's Number Guesser!");
 
         Random randomGenerator = new Random();
-        int finalAnswer = randomGenerator.nextInt(0, 51);
+        int finalAnswer = randomGenerator.nextInt(0, 31);
         Scanner userInput = new Scanner(System.in);
-        int userAnswer;
+        int userAnswer = -1;
 
-        System.out.println("Please guess a number between 0 and 50:");
-        userAnswer = userInput.nextInt();
-        userInput.nextLine();
+        System.out.println("Please guess a number between 0 and 30:");
 
-        if (userAnswer == finalAnswer) System.out.println("Correct! You guessed right.");
-        if (userAnswer < finalAnswer) System.out.println("Guess higher");
-        if (userAnswer > finalAnswer) System.out.println("Guess lower");
+        while (userAnswer != finalAnswer){
 
-        System.out.println(finalAnswer); // for debugging purposes
+            userAnswer = userInput.nextInt();
+            userInput.nextLine();
+
+            if (userAnswer < finalAnswer) System.out.println("Guess higher");
+            if (userAnswer > finalAnswer) System.out.println("Guess lower");
+
+        }
+
+        System.out.println("Correct! The answer was " + finalAnswer);
 
     }
 }
