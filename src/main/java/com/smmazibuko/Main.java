@@ -11,25 +11,33 @@ public class Main {
 
         Random randomGenerator = new Random();
         int finalAnswer = randomGenerator.nextInt(0, 31);
-        Scanner userInput = new Scanner(System.in);
+        Scanner myScanner = new Scanner(System.in);
         int userAnswer = -1;
 
         System.out.println("Please guess a number between 0 and 30:");
 
         while (userAnswer != finalAnswer){
 
-            userAnswer = userInput.nextInt();
-            userInput.nextLine();
-
-            checkUserAnswer(userAnswer, finalAnswer);
+            userAnswer = getUserAnswer(myScanner);
+            compareAnswer(userAnswer, finalAnswer);
 
         }
 
-        userInput.close();
+        myScanner.close();
 
     }
 
-    static void checkUserAnswer(int guess, int answer){
+    static int getUserAnswer(Scanner scanner){
+
+        int userAnswer = scanner.nextInt();
+        scanner.nextLine();
+
+        // user input will be validated here
+
+        return userAnswer;
+    }
+
+    static void compareAnswer(int guess, int answer){
 
         if (guess < answer) System.out.println("Guess higher");
         if (guess > answer) System.out.println("Guess lower");
