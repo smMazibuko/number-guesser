@@ -21,12 +21,20 @@ public class Main {
             userAnswer = userInput.nextInt();
             userInput.nextLine();
 
-            if (userAnswer < finalAnswer) System.out.println("Guess higher");
-            if (userAnswer > finalAnswer) System.out.println("Guess lower");
+            checkUserAnswer(userAnswer, finalAnswer);
 
         }
 
-        System.out.println("Correct! The answer was " + finalAnswer);
+        userInput.close();
 
     }
+
+    static void checkUserAnswer(int guess, int answer){
+
+        if (guess < answer) System.out.println("Guess higher");
+        if (guess > answer) System.out.println("Guess lower");
+        if (guess == answer) System.out.println("Correct! The answer was " + answer);
+
+    }
+
 }
