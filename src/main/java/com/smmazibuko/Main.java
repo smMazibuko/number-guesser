@@ -1,6 +1,5 @@
 package com.smmazibuko;
 
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -18,16 +17,16 @@ public class Main {
 
         System.out.println("Please guess a number between 0 and " + upperLimit + ":");
 
-        while (userAnswer != finalAnswer){
+        while (userAnswer != finalAnswer) {
 
             userAnswer = getUserAnswer(myScanner);
-            compareAnswer(userAnswer, finalAnswer);
+            compareAnswer(userAnswer, finalAnswer, upperLimit);
         }
 
         myScanner.close();
     }
 
-    static int getUserAnswer(Scanner scanner){
+    static int getUserAnswer(Scanner scanner) {
 
         try {
             int userAnswer = scanner.nextInt();
@@ -35,17 +34,27 @@ public class Main {
             return userAnswer;
         }
         catch (Exception e) {
-            // user input will be validated here
+            scanner.nextLine();
             return -1;
         }
 
     }
 
-    static void compareAnswer(int guess, int answer){
+    static void compareAnswer(int guess, int answer, int bound) {
 
-        if (guess < answer) System.out.println("Guess higher");
-        if (guess > answer) System.out.println("Guess lower");
-        if (guess == answer) System.out.println("Correct! The answer was " + answer + ".");
+        // valid input options
+        if (guess < answer && guess >= 0)
+            System.out.println("Guess higher");
+        if (guess > answer && guess <= bound)
+            System.out.println("Guess lower");
+        if (guess == answer)
+            System.out.println("Correct! The answer was " + answer + ".");
+
+        // invalid inputs
+        if (guess > bound)
+            System.out.println("Too high. Guess a number between 0 and " + bound + "...");
+        if (guess < 0)
+            System.out.println("Invalid input. Please try again...");
 
     }
 
