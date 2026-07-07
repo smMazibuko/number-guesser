@@ -11,9 +11,13 @@ public class Main {
         Random randomGenerator = new Random();
         Scanner myScanner = new Scanner(System.in);
 
-        int upperLimit = 20;
-        int finalAnswer = randomGenerator.nextInt(0, upperLimit + 1);
+        int upperLimit;
         int userAnswer = -1; // sentinel value
+
+        System.out.println("What difficulty would you like to try?\n[ 1 | 2 | 3 ]");
+        upperLimit = getUpperLimit(myScanner);
+
+        int finalAnswer = randomGenerator.nextInt(0, upperLimit + 1);
 
         System.out.println("Please guess a number between 0 and " + upperLimit + ":");
 
@@ -26,14 +30,43 @@ public class Main {
         myScanner.close();
     }
 
+    static int getUpperLimit(Scanner scanner) {
+
+        int userInput = -1;
+        int limit = 0;
+
+        while (!(userInput >= 1 && userInput <= 3)) {
+            try {
+                userInput = scanner.nextInt();
+                scanner.nextLine();
+            } catch (Exception e) {
+                scanner.nextLine();
+                System.out.println("Invalid input. Please try again.");
+            }
+        }
+
+        switch (userInput) {
+            case 1:
+                limit = 20;
+                break;
+            case 2:
+                limit = 50;
+                break;
+            case 3:
+                limit = 100;
+                break;
+        }
+
+        return limit;
+    }
+
     static int getUserAnswer(Scanner scanner) {
 
         try {
             int userAnswer = scanner.nextInt();
             scanner.nextLine();
             return userAnswer;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             scanner.nextLine();
             return -1;
         }
@@ -52,9 +85,9 @@ public class Main {
 
         // invalid inputs
         if (guess > bound)
-            System.out.println("Too high. Guess a number between 0 and " + bound + "...");
+            System.out.println("Too high. Guess a number between 0 and " + bound + ".");
         if (guess < 0)
-            System.out.println("Invalid input. Please try again...");
+            System.out.println("Invalid input. Please try again.");
 
     }
 
